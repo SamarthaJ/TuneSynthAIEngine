@@ -1,0 +1,108 @@
+/* separateAudio.css */
+
+/* Overall container styling */
+.separate-audio-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* File upload styling */
+.file-upload input {
+  font-size: 1rem;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.file-upload input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Button styling */
+.upload-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #357ab7;
+}
+
+.upload-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Output message styling */
+.output-message {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Separated tracks container */
+.tracks-container {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.track-item {
+  margin: 10px 0;
+}
+
+.track-item p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.track-item audio {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Back button styling */
+.back-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #c9302c;
+}

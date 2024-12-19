@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FileUpload from "./FileUpload";
 import ActionButtons from "./ActionButtons";
@@ -15,19 +16,39 @@ const Home = () => {
   };
 
   const handleComposeTrack = () => {
-    // if (!musicFile) {
-    //   setOutput("Please upload a music file first!");
-    //   return;
-    // }
     navigate("/Generation");
   };
 
-  const handleExtractInstrumentals = () => {
+  const handleExtractInstrumentals = async () => {
     if (!musicFile) {
       setOutput("Please upload a music file first!");
       return;
     }
-    setOutput("Extracting instrumentals...");
+
+    const formData = new FormData();
+    formData.append("input_file", musicFile);
+
+    try {
+      setOutput("Uploading and processing the file. Please wait...");
+
+      const response = await axios.post(
+        "http://127.0.0.1:5000/separate_audio",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const { tracks } = response.data; // Assuming Flask returns track details
+      setOutput("Audio separation successful!");
+      // Navigate to /separate_audio and pass tracks
+      navigate("/separate_audio", { state: { tracks } });
+    } catch (error) {
+      setOutput("Failed to process the file. Please try again.");
+      console.error(error);
+    }
   };
 
   return (

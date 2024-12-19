@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./sapp.css"; // Make sure to include the CSS file with the updated styles
 
 const MusicGenerator = () => {
   const [prompt, setPrompt] = useState(""); // State to hold the prompt input
@@ -45,32 +46,45 @@ const MusicGenerator = () => {
   };
 
   return (
-    <div>
-      <h1>Music Generator</h1>
-      <div>
+    <div className="music-generator-container">
+      <h1 className="music-generator-title">Music Generator</h1>
+
+      <div className="input-container">
         <input
           type="text"
           value={prompt}
           onChange={handlePromptChange}
           placeholder="Enter a prompt for the music"
+          className="input-prompt" // Updated class for styling
         />
-        <div>
-          <button onClick={generateMusic} disabled={loading}>
-            {loading ? "Generating..." : "Generate Music"}
-          </button>
-        </div>
       </div>
 
-      {loading && <p>Generating music, please wait...</p>}
+      <div className="button-container">
+        <button
+          onClick={generateMusic}
+          disabled={loading}
+          className="generate-button"
+        >
+          {loading ? "Generating..." : "Generate Music"}
+        </button>
+      </div>
+
+      {loading && (
+        <p className="loading-text">Generating music, please wait...</p>
+      )}
 
       {audioUrl && (
-        <div>
+        <div className="audio-container">
           <h3>Audio Ready!</h3>
           <audio controls>
             <source src={audioUrl} type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
-          <a href={audioUrl} download="generated_music.mp3">
+          <a
+            href={audioUrl}
+            download="generated_music.mp3"
+            className="download-link"
+          >
             Download Generated Music
           </a>
         </div>
