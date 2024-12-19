@@ -1,0 +1,77 @@
+/* General reset and styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  background-attachment: fixed;
+  color: #fff;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Wrapper for the page content */
+.page-container {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Heading styling */
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #ff4757;
+  transform: translateY(-3px);
+}
+
+/* Row styling for buttons */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Abstract musical background effect */
+body:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/dark-mosaic.png"),
+    linear-gradient(45deg, rgba(255, 0, 150, 0.4), rgba(0, 204, 255, 0.4));
+  z-index: -1;
+  opacity: 0.7;
+}

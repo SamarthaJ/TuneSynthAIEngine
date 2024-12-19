@@ -1,0 +1,12 @@
+.output-display {
+  margin-top: 30px;
+}
+
+.output-display h3 {
+  color: #5c67e3;
+}
+
+.output-display p {
+  font-size: 16px;
+  color: #555;
+}

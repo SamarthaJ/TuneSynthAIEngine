@@ -1,0 +1,39 @@
+/* Container styling */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Label styling */
+.upload-label {
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.upload-label:hover {
+  background: linear-gradient(135deg, #ff4757, #ff6b6b);
+  transform: translateY(-3px);
+}
+
+/* File input styling (hidden) */
+input[type="file"] {
+  display: none;
+}
+
+/* Additional container effects */
+.file-upload:after {
+  content: "Supported formats: MP3, WAV";
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+  text-align: center;
+}

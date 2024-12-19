@@ -1,0 +1,9 @@
+demucs
+muspy
+librosa
+torch
+torchvision
+torchaudio
+flask
+flask-cors
+safetensors
