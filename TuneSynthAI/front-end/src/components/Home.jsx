@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import FileUpload from "./FileUpload";
 import ActionButtons from "./ActionButtons";
 import OutputDisplay from "./OutputDisplay";
@@ -9,14 +8,14 @@ import "./home.css";
 const Home = () => {
   const [musicFile, setMusicFile] = useState(null);
   const [output, setOutput] = useState("");
-  const navigate = useNavigate();
+  const [tracks, setTracks] = useState([]);
 
   const handleFileChange = (file) => {
     setMusicFile(file);
   };
 
   const handleComposeTrack = () => {
-    navigate("/Generation");
+    setOutput("Compose Track feature coming soon!");
   };
 
   const handleExtractInstrumentals = async () => {
@@ -41,13 +40,12 @@ const Home = () => {
         }
       );
 
-      const { tracks } = response.data; // Assuming Flask returns track details
-      setOutput("Audio separation successful!");
-      // Navigate to /separate_audio and pass tracks
-      navigate("/separate_audio", { state: { tracks } });
+      const { files } = response.data; // Assuming Flask returns track details
+      setTracks(files);
+      setOutput("Audio separation successful! Check the outputs below.");
     } catch (error) {
       setOutput("Failed to process the file. Please try again.");
-      console.error(error);
+      console.error("Error " + error);
     }
   };
 
@@ -60,6 +58,25 @@ const Home = () => {
         onExtractInstrumentals={handleExtractInstrumentals}
       />
       <OutputDisplay output={output} />
+      {tracks.length > 0 && (
+        <div className="track-list">
+          <h2>Separated Tracks:</h2>
+          <ul>
+            {tracks.map((track) => (
+              <li key={track.track}>
+                <p>{track.track}</p>
+                <audio controls>
+                  <source src={track.url} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+                <a href={track.url} download>
+                  Download {track.track}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
