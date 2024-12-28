@@ -32,7 +32,7 @@ const SeparateAudio = () => {
       setOutput("Uploading and processing the file. Please wait...");
 
       const response = await axios.post(
-        "http://127.0.0.1:5000/separate_audio",
+        "http://127.0.0.1:5000/separated_audio",
         formData,
         {
           headers: {

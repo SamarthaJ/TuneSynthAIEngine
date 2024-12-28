@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/separate_audio", methods=["POST"])
+@app.route("/separated_audio", methods=["POST"])
 def separate_audio_endpoint():
     """
     Flask endpoint to separate an audio file into components using Demucs.
