@@ -18,7 +18,7 @@ TEMP_DIR = './static/'
 if not os.path.exists(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
-@app.route("/separated_audio", methods=["POST"])
+@app.route("/separate_audio", methods=["POST"])
 def separate_audio_endpoint():
     """
     Flask endpoint to separate an audio file into components using Demucs.
@@ -114,4 +114,4 @@ def serve_file(filename):
     return send_file(os.path.join(TEMP_DIR, filename))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
