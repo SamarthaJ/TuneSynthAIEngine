@@ -3,7 +3,6 @@ import torch
 import torchaudio
 from demucs import pretrained
 from demucs.apply import apply_model
-from tqdm import tqdm
 from flask import Flask, request, jsonify, send_file
 from tempfile import NamedTemporaryFile
 from flask_cors import CORS
@@ -87,9 +86,19 @@ def separate_audio_endpoint():
         print("Processing separated sources")
         sources = sources.squeeze(0).cpu()
 
-        # Save separated sources to temporary files
+        # Map source outputs to correct track names
+        track_names = ['drums', 'bass', 'vocals', 'other']
         temp_files = []
-        for idx, (track, source) in enumerate(zip(['drums', 'bass', 'vocals', 'other'], sources)):
+
+        # Check and adjust for potential mislabeling
+        for idx, source in enumerate(sources):
+            if idx == 2:  # Swap 'vocals' with 'other'
+                track = 'other'
+            elif idx == 3:
+                track = 'vocals'
+            else:
+                track = track_names[idx]
+
             temp_output_path = os.path.join(TEMP_DIR, f"{track}.wav")
             print(f"Saving {track} track to: {temp_output_path}")
             torchaudio.save(temp_output_path, source, 44100)
@@ -99,7 +108,7 @@ def separate_audio_endpoint():
         response_files = []
         for track, file_path in temp_files:
             print(f"Adding {track} track to response: {file_path}")
-            response_files.append({"track": track, "url": f"http://127.0.0.1:5000/static/{track}.wav"})
+            response_files.append({"track": track, "url": f"http://127.0.0.1:5000/static/{os.path.basename(file_path)}"})
 
         print("Audio separation successful, sending response")
         return jsonify({"message": "Audio successfully separated", "files": response_files}), 200
