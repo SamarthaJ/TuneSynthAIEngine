@@ -10,7 +10,7 @@ CORS(app)  # Enable CORS for all routes
 
 # Hugging Face API details
 API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
-HEADERS = {"Authorization": "Bearer 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"}
+HEADERS = {"Authorization": "Bearer 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"}
  
 def query_huggingface_api(payload):
     """Send a request to the Hugging Face API."""

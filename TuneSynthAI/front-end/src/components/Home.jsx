@@ -1,21 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import axios from "axios";
 import FileUpload from "./FileUpload";
 import ActionButtons from "./ActionButtons";
 import OutputDisplay from "./OutputDisplay";
 import "./home.css";
 
-const Home = () => {
+const HomePage = () => {
   const [musicFile, setMusicFile] = useState(null);
   const [output, setOutput] = useState("");
   const [tracks, setTracks] = useState([]);
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleFileChange = (file) => {
     setMusicFile(file);
-  };
-
-  const handleComposeTrack = () => {
-    setOutput("Compose Track feature coming soon!");
   };
 
   const handleExtractInstrumentals = async () => {
@@ -49,15 +47,22 @@ const Home = () => {
     }
   };
 
+  // Function to navigate to the SAPP page when the user clicks "Compose Track"
+  const handleNavigateToComposeTrack = () => {
+    setOutput("Redirecting to the Compose Track page...");
+    navigate("/Generation"); // This will take the user to the SAPP page
+  };
+
   return (
     <div className="app">
       <h1>TuneSynthAI</h1>
-      <FileUpload onFileChange={handleFileChange} />
-      <ActionButtons
-        onComposeTrack={handleComposeTrack}
-        onExtractInstrumentals={handleExtractInstrumentals}
-      />
+        <FileUpload onFileChange={handleFileChange} />
+        <ActionButtons
+          onExtractInstrumentals={handleExtractInstrumentals}
+          onNavigateToComposeTrack={handleNavigateToComposeTrack}
+        />
       <OutputDisplay output={output} />
+      
       {tracks.length > 0 && (
         <div className="track-list">
           <h2>Separated Tracks:</h2>
@@ -81,4 +86,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./sapp.css"; // Make sure to include the CSS file with the updated styles
+import "./sapp.css";
 
-const MusicGenerator = () => {
+const SAPP = () => {
   const [prompt, setPrompt] = useState(""); // State to hold the prompt input
   const [loading, setLoading] = useState(false); // State to indicate loading
   const [audioUrl, setAudioUrl] = useState(null); // State to store the audio URL for playback/download
@@ -55,7 +55,7 @@ const MusicGenerator = () => {
           value={prompt}
           onChange={handlePromptChange}
           placeholder="Enter a prompt for the music"
-          className="input-prompt" // Updated class for styling
+          className="input-prompt"
         />
       </div>
 
@@ -69,9 +69,7 @@ const MusicGenerator = () => {
         </button>
       </div>
 
-      {loading && (
-        <p className="loading-text">Generating music, please wait...</p>
-      )}
+      {loading && <p className="loading-text">Generating music, please wait...</p>}
 
       {audioUrl && (
         <div className="audio-container">
@@ -80,11 +78,7 @@ const MusicGenerator = () => {
             <source src={audioUrl} type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
-          <a
-            href={audioUrl}
-            download="generated_music.mp3"
-            className="download-link"
-          >
+          <a href={audioUrl} download="generated_music.mp3" className="download-link">
             Download Generated Music
           </a>
         </div>
@@ -93,4 +87,4 @@ const MusicGenerator = () => {
   );
 };
 
-export default MusicGenerator;
+export default SAPP;
