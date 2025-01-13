@@ -1,31 +1,36 @@
+/* General styling for the results page container */
 .results-page {
-  padding: 20px;
+  padding: 20px; /* Adds space inside the container for better layout */
 }
 
+/* Styling for the list of tracks */
 .track-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: flex; /* Enables flexbox layout for the track list */
+  flex-direction: column; /* Arranges the track items in a vertical column */
+  gap: 20px; /* Adds space between each track item */
 }
 
+/* Styling for each individual track item */
 .track-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
+  border: 1px solid #ccc; /* Adds a light gray border around each track */
+  padding: 10px; /* Adds space inside the track item container */
+  border-radius: 5px; /* Rounds the corners for a smoother appearance */
 }
 
+/* Styling for the container holding the track's main details */
 .track-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; /* Enables flexbox layout for alignment */
+  align-items: center; /* Vertically centers items within the track-info */
+  justify-content: space-between; /* Places items at opposite ends of the container */
 }
 
+/* General styling for interactive buttons (play, expand, download, share) */
 .play-btn,
 .expand-btn,
 .download-btn,
 .share-btn {
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #e0e7ff;
+  padding: 5px; /* Adds space inside the button for a clickable area */
+  cursor: pointer; /* Changes cursor to pointer for better UX */
+  border-radius: 5px; /* Rounds button corners for a smooth look */
+  background-color: #e0e7ff; /* Sets a soft blue background color */
 }

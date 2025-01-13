@@ -1,7 +1,8 @@
+#sample code to check if the API calls are working properly
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
-headers = {"Authorization": "Bearer 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"}
+headers = {"Authorization": "Bearer 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"}
 
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)

@@ -1,12 +1,15 @@
+/* Styling for the container of the output display */
 .output-display {
-  margin-top: 30px;
+  margin-top: 30px; /* Adds space above the output display section */
 }
 
+/* Styling for the heading (h3) inside the output display */
 .output-display h3 {
-  color: #e9ebff;
+  color: #e9ebff; /* Sets the text color to a light blue shade */
 }
 
+/* Styling for the paragraph (p) inside the output display */
 .output-display p {
-  font-size: 16px;
-  color: #ffffff;
+  font-size: 16px; /* Sets the font size to 16px for better readability */
+  color: #ffffff; /* Sets the text color to white */
 }

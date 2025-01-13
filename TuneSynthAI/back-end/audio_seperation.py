@@ -1,3 +1,6 @@
+#this code is for separating the audio tracks into individual drums, bass, vocals and other tracks
+#install and import all the required librarires below
+#check requirements.txt file for the installation
 import os
 import torch
 import torchaudio
@@ -13,7 +16,7 @@ CORS(app, origins=["http://localhost:5173"])
 # Directory where the separated audio files will be stored
 TEMP_DIR = './static/'
 
-# Ensure the temp directory exists
+# Ensure the temp directory exists or else create a directory
 if not os.path.exists(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
@@ -23,14 +26,15 @@ def separate_audio_endpoint():
     Flask endpoint to separate an audio file into components using Demucs.
 
     Request:
-        - input_file: The audio file to process (multipart/form-data).
+        - input_file: The audio file to process in the form of .mp3 ov .wav.
 
     Returns:
-        - Separated audio components as downloadable files.
+        - Separated audio components as downloadable mp3 file.
     """
     try:
         print("Request received for audio separation")
 
+        #if the input file has not been uploaded 
         if 'input_file' not in request.files:
             print("Error: No file part in the request")
             return jsonify({"error": "No file part in the request"}), 400
@@ -90,7 +94,7 @@ def separate_audio_endpoint():
         track_names = ['drums', 'bass', 'vocals', 'other']
         temp_files = []
 
-        # Check and adjust for potential mislabeling
+        # Check and adjust for potential mislabeling that might occur during the sever client communication
         for idx, source in enumerate(sources):
             if idx == 2:  # Swap 'vocals' with 'other'
                 track = 'other'
@@ -110,9 +114,11 @@ def separate_audio_endpoint():
             print(f"Adding {track} track to response: {file_path}")
             response_files.append({"track": track, "url": f"http://127.0.0.1:5000/static/{os.path.basename(file_path)}"})
 
+        #return a print message for the successful audio separation process
         print("Audio separation successful, sending response")
         return jsonify({"message": "Audio successfully separated", "files": response_files}), 200
 
+    #if audio separation not completed successfully, print error message
     except Exception as e:
         print(f"Error during audio separation: {str(e)}")
         return jsonify({"error": str(e)}), 500

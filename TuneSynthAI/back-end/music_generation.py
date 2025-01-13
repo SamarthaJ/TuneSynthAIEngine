@@ -1,4 +1,6 @@
-import os
+#this code is for generating audio files based on the user prompt 
+#install and import all the required librarires below
+#check requirements.txt file for the installationimport os
 import requests
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS  # Import CORS
@@ -22,7 +24,14 @@ def query_huggingface_api(payload):
 
 @app.route('/generate-music', methods=['POST'])
 def generate_music():
-    """Endpoint to generate music and return the file."""
+    """
+    Flask endpoint to generate music and return the file.
+
+    Request:
+        - User prompt of the required audio.
+
+    Returns:
+        - Audio files generated based on the user's prompt."""
     try:
         # Parse the request JSON for the prompt
         data = request.get_json()
@@ -46,6 +55,7 @@ def generate_music():
         # Send the audio file as a response
         return send_file(temp_file.name, mimetype="audio/mp3", as_attachment=True, download_name="generated_music.mp3")
 
+    #if audio generation is not successfull print error message
     except Exception as e:
         return jsonify({"error": "An error occurred during music generation", "details": str(e)}), 500
 

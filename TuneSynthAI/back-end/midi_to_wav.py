@@ -1,3 +1,4 @@
+#this code is to convert the midi to wav files if needed as the model does not accept midi files
 from midi2audio import FluidSynth
 import os
 
